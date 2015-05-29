@@ -145,8 +145,9 @@ function creationFicheFrais($connexion, $id){
 
     if (!$ligne = $resultat->fetch())
     {
+        $date = date('YYYY-MM-DD');
     //pas de fiche de frais pour ce mois là on la crée avec les lignes frais forfait correpondante
-        $connexion->exec("insert into fichefrais values ('".$id."', '".$_SESSION['annee_mois']."', 0, 0, NULL, 'CR')");
+        $connexion->exec("insert into fichefrais values ('".$id."', '".$_SESSION['annee_mois']."', 0, 0, $date, 'CR')");
         $connexion->exec("insert into lignefraisforfait select '".$id."', '".$_SESSION['annee_mois']."', id, 0 from fraisforfait");
     }
 }
